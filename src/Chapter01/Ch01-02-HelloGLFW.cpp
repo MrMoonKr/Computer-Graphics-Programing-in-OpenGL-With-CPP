@@ -14,7 +14,7 @@ int main( int argc, char** argv )
     }
 
     // Initialize GLAD to load OpenGL functions
-    if ( 0 != gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress ) )
+    if ( 0 == gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress ) )
     {
         std::cout << "failed to initialize GLAD " << std::endl;
         return -1;

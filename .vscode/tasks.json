@@ -1,6 +1,14 @@
 {
     "tasks": [
         {
+            "label": "[GLFW] Build Code and Copy DLL",
+            "dependsOn": [
+                "[GLFW] build active file",
+                "[GLFW] Copy glfw.dll"
+            ],
+            "problemMatcher": []
+        },
+        {
             "type": "cppbuild",
             "label": "[GLFW] build active file",
             "command": "C:/msys64/ucrt64/bin/g++.exe",
@@ -32,6 +40,14 @@
             ],
             "group": "build",
             "detail": "build glfw active file."
+        },
+        {
+            "type": "shell",
+            "label": "[GLFW] Copy glfw.dll",
+            "command": "cp .\\libs\\glfw\\lib-mingw-w64\\glfw3.dll .\\bin\\glfw3.dll",
+            "problemMatcher": [],
+            "group": "build",
+            "detail": "Copy glfw.dll to bin directory."
         },
         {
             "type": "cppbuild",
