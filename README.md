@@ -40,8 +40,18 @@ Computer-Graphics-Programing-in-OpenGL-With-CPP
 
 ## OpenGL 프로젝트 초기화
 
-- 
-- 
+- GLAD
+  - [GLAD](https://glad.dav1d.de/)  
+  - C/C++ OpenGL Core 4.3
+
+- GLFW
+  - [GLFW](https://www.glfw.org/download.html)
+  - [Windows Pre-Compiled Binaries](https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip)
+  - glfw 3.4 win64
+
+- GLM
+  -  
+
 - 
   ```
   $ ...
