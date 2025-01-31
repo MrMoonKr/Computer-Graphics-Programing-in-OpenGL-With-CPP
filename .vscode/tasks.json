@@ -2,6 +2,39 @@
     "tasks": [
         {
             "type": "cppbuild",
+            "label": "[GLFW] build active file",
+            "command": "C:/msys64/ucrt64/bin/g++.exe",
+            "args": [
+                // include 디렉토리 추가
+                "-I", "${workspaceFolder}/libs/glad/include",
+                "-I", "${workspaceFolder}/libs/glfw/include",
+                // lib 디렉토리 추가 
+                "-L", "${workspaceFolder}/libs/glfw/lib-mingw-w64",
+                //
+                "-fdiagnostics-color=always",
+                // 디버깅 심볼 포함 옵션션
+                "-g",
+                // 컴파일할 파일 목록
+                "${workspaceFolder}/libs/glad/src/glad.c",
+                "${file}",
+                // 링크할 라이브러리 목록
+                "-lglfw3dll",
+                // 컴파일 결과물 실행 파일 이름
+                "-o",
+                //"${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${workspaceFolder}\\bin\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "C:/msys64/ucrt64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "build glfw active file."
+        },
+        {
+            "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
             "command": "C:/msys64/ucrt64/bin/g++.exe",
             "args": [
