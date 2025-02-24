@@ -8,7 +8,7 @@ Computer-Graphics-Programing-in-OpenGL-With-CPP
 
 ## 책 관련 링크  
 
-- [Computer Graphics Programming in OpenGL with Java 3rd [ 원서 ]](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=279743863)  
+- [Computer Graphics Programming in OpenGL with C++ 3rd [ 원서 ]](https://athena.ecs.csus.edu/~gordonvs/textC3E.html)  
 
 - [저자 홈페이지](https://athena.ecs.csus.edu/~gordonvs/)  
 
