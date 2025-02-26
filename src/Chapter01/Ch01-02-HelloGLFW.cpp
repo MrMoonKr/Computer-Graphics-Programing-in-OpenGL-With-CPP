@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>      // Library for handling the loading of OpenGL functions, must be included before GLFW
+#include <GLFW/glfw3.h>     // Library for handling window and user input
 
 int main( int argc, char** argv )
 {

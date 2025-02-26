@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>      // Library for handling the loading of OpenGL functions, must be included before GLFW
+#include <GLFW/glfw3.h>     // Library for handling window and user input
 
 int main( int argc, char** argv )
 {
@@ -17,6 +17,8 @@ int main( int argc, char** argv )
     glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
     glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
     glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE );
+
+    glfwWindowHint( GLFW_SCALE_TO_MONITOR, GLFW_TRUE );
 
     GLFWwindow* window = glfwCreateWindow( 1024, 768, "GLFW Application", nullptr, nullptr );
     if ( nullptr == window )

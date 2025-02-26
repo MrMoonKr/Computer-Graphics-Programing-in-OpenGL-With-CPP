@@ -1,0 +1,28 @@
+{
+  "dependencies": [
+    "cpp-httplib",
+    "curl",
+    "fmt",
+    "freeglut",
+    "ftgl",
+    "glew",
+    "glfw3",
+    "glm",
+    {
+      "name": "imgui",
+      "features": [
+        "freetype",
+        "glfw-binding",
+        "opengl3-binding"
+      ]
+    },
+    "nlohmann-json",
+    "stb",
+    {
+      "name": "glad",
+      "features": [
+        "gl-api-43"
+      ]
+    }
+  ]
+}
