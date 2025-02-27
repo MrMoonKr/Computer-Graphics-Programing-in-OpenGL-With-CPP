@@ -5,13 +5,21 @@
 
 int main( int argc, char** argv )
 {
-    std::cout << "Hello, GLFW!, 안녕, 지엘에프더블유" << std::endl;
+    //std::cout << "Hello, GLFW!, 안녕, 지엘에프더블유" << std::endl;
 
     if ( GLFW_TRUE != glfwInit() )
     {
         std::cout << "failed to initialize GLFW" << std::endl;
         return -1;
     }
+
+    // 여기서 호출시 에러 발생. 
+    // 윈도우 생성 후에 호출 필요함.
+    // if ( 0 == gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress ) )
+    // {
+    //     std::cout << "failed to initialize GLAD " << std::endl;
+    //     return -1;
+    // }
 
     glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
     glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
@@ -20,7 +28,7 @@ int main( int argc, char** argv )
 
     glfwWindowHint( GLFW_SCALE_TO_MONITOR, GLFW_TRUE );
 
-    GLFWwindow* window = glfwCreateWindow( 1024, 768, "GLFW Application", nullptr, nullptr );
+    GLFWwindow* window = glfwCreateWindow( 800, 600, "1장. GLFW3 Application", nullptr, nullptr );
     if ( nullptr == window )
     {
         std::cout << "failed to create window" << std::endl;
@@ -30,7 +38,6 @@ int main( int argc, char** argv )
 
     glfwMakeContextCurrent( window );
 
-    // Initialize GLAD to load OpenGL functions
     if ( 0 == gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress ) )
     {
         std::cout << "failed to initialize GLAD " << std::endl;
@@ -38,7 +45,7 @@ int main( int argc, char** argv )
     }
 
     glClearColor( 0.3f, 0.3f, 0.3f, 1.0f );
-
+    
     while ( !glfwWindowShouldClose( window ) )
     {
         glfwPollEvents();
@@ -46,7 +53,16 @@ int main( int argc, char** argv )
         {
             glfwSetWindowShouldClose( window, GLFW_TRUE );
         }
-
+        else if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_1 ) )
+        {
+            glClearColor( 1.0f, 0.0f, 0.0f, 1.0f );
+        }
+        else if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_2 ) )
+        {
+            glClearColor( 0.0f, 1.0f, 0.0f, 1.0f );
+        }
+        
+        // glClearColor( 0.3f, 0.3f, 0.3f, 1.0f );
         glClear( GL_COLOR_BUFFER_BIT );
 
         glfwSwapBuffers( window );

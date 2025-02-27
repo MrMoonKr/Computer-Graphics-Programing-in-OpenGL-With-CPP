@@ -1,90 +1,92 @@
-//////////////////////////////////////////////////////////////////////
-//  Program 2.1                                                     //
-//  This program is a basic OpenGl application using GLFW           //
-//  for window management and GLAD for loading OpenGL functions.    //
-//  The program creates a window and clears the window with a       //
-//  red color.                                                      //
-//                                                                  //
-//  you can find more information about how                         //
-//  this program works in the wiki of this repository.              //
-//                                                                  //
-//  Francisco Zavala                                                //
-//  24/07/2024                                                      //
-//////////////////////////////////////////////////////////////////////
-
-// Include necessary libraries
-#include <glad/glad.h>  // Library for handling the loading of OpenGL functions
-#include <GLFW/glfw3.h> // Library for handling window and user input
 #include <iostream>
 
-// Initialization function (currently empty)
-void init( GLFWwindow *window )
+#include <glad/glad.h>      // Library for handling the loading of OpenGL functions, must be included before GLFW
+#include <GLFW/glfw3.h>     // Library for handling window and user input
+
+float getRandomFloat( float min, float max )
 {
+    return ( ( float )rand() / RAND_MAX ) * ( max - min ) + min;
 }
 
-// Function to update the display
-void display( GLFWwindow *window )
+void init( GLFWwindow* window )
+{
+    glClearColor( 0.3f, 0.3f, 0.3f, 1.0f );
+}
+
+void display( GLFWwindow* window )
 {
     glClear( GL_COLOR_BUFFER_BIT );
-    glClearColor( 1.0f, 0.0f, 0.0f, 1.0f );
+    //glfwSwapBuffers( window );
 }
 
-int main()
+int main( int argc, char** argv )
 {
-    // Initialize GLFW, terminate program if failed
-    if ( !glfwInit() )
+    if ( GLFW_TRUE != glfwInit() )
     {
-        exit( EXIT_FAILURE );
+        std::cout << "failed to initialize GLFW" << std::endl;
+        return -1;
     }
 
-    // Set window properties
     glfwWindowHint( GLFW_CONTEXT_VERSION_MAJOR, 4 );
     glfwWindowHint( GLFW_CONTEXT_VERSION_MINOR, 3 );
     glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
-    glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE );
-
+    glfwWindowHint( GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE );
     glfwWindowHint( GLFW_SCALE_TO_MONITOR, GLFW_TRUE );
 
-    // Create the window
-    // GLFWwindow* window = glfwCreateWindow(1080, 720, "program_2_1", NULL,
-    // NULL);
-
-    // monitor properties
-
-    const GLFWvidmode *mode = glfwGetVideoMode( glfwGetPrimaryMonitor() );
-    GLFWwindow *window = glfwCreateWindow( 800, 600, " program_2_1 ", nullptr, nullptr );
-    std::cout << "width " << mode->width << std::endl;
-    std::cout << "height " << mode->height << std::endl;
-    std::cout << "refresh " << mode->refreshRate << std::endl;
-    std::cout << "blueBits " << mode->blueBits << std::endl;
-    std::cout << "redBits " << mode->redBits << std::endl;
-    std::cout << "greenBits " << mode->greenBits << std::endl;
-
-    if ( !window )
+    GLFWwindow* window = glfwCreateWindow( 800, 600, "2장. GLFW3 Application", nullptr, nullptr );
+    if ( nullptr == window )
     {
+        std::cout << "failed to create window" << std::endl;
         glfwTerminate();
         return -1;
     }
 
-    // Set the OpenGL context for the window
     glfwMakeContextCurrent( window );
 
-    // Initialize GLAD to load OpenGL functions
-    if ( !gladLoadGLLoader( ( GLADloadproc )glfwGetProcAddress ) )
+    if ( 0 == gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress ) )
     {
         std::cout << "failed to initialize GLAD " << std::endl;
         return -1;
     }
 
-    // Main loop
+    glfwSwapInterval( 1 );
+
+    init( window );
+    
     while ( !glfwWindowShouldClose( window ) )
     {
-        display( window );
         glfwPollEvents();
+
+        if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_ESCAPE ) )
+        {
+            glfwSetWindowShouldClose( window, GLFW_TRUE );
+        }
+        else if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_1 ) )
+        {
+            glClearColor( 1.0f, 0.0f, 0.0f, 1.0f );
+        }
+        else if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_2 ) )
+        {
+            glClearColor( 0.0f, 1.0f, 0.0f, 1.0f );
+        }
+        else if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_3 ) )
+        {
+            glClearColor( 0.0f, 0.0f, 1.0f, 1.0f );
+        }
+        else if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_4 ) )
+        {
+            float r = getRandomFloat( 0.0f, 1.0f );
+            float g = getRandomFloat( 0.0f, 1.0f );
+            float b = getRandomFloat( 0.0f, 1.0f );
+            glClearColor( r, g, b, 1.0f );
+        }
+        
+        
+        display( window );
+
         glfwSwapBuffers( window );
     }
 
-    // Terminate GLFW when program ends
     glfwDestroyWindow( window );
     glfwTerminate();
 

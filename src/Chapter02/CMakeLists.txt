@@ -1,11 +1,16 @@
 cmake_minimum_required( VERSION 3.30 )
 
+
+# 프로젝트 설정
+
 project( Chapter02 
     VERSION 1.0
     DESCRIPTION "Chapter 02"
     LANGUAGES CXX
 )
 
+
+# 타겟 설정
 
 add_executable( program_2_1 program_2_1.cpp )
 target_link_libraries( program_2_1 PRIVATE glad::glad )
@@ -32,6 +37,7 @@ target_link_libraries( program_2_6 PRIVATE glad::glad )
 target_link_libraries( program_2_6 PRIVATE glfw )
 
 
+# 출력 경로 설정
 
 set_target_properties( program_2_1 
     program_2_2
@@ -41,6 +47,9 @@ set_target_properties( program_2_1
     program_2_6
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_SOURCE_DIR}/bin/msvc/Debug/Chapter02"
 )
+
+
+# 에셋 복사
 
 file( COPY ${CMAKE_SOURCE_DIR}/data DESTINATION "${CMAKE_SOURCE_DIR}/bin/msvc/Debug/Chapter02" )
 

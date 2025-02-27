@@ -15,21 +15,16 @@ Computer-Graphics-Programing-in-OpenGL-With-CPP
 
 ## 개발 및 테스트 환경
 
-- [개발 환경 구축](https://code.visualstudio.com/docs/cpp/config-mingw) 
-- Windows 11 64bit
+- [개발 환경 구축](https://code.visualstudio.com/docs/cpp/config-mingw)  
+
+- Windows 11 64bit  
+
 - MinGW-w64 via MSYS2
-- VS Code
-- C/C++ Extension for VS Code
-  - c_cpp_properties.json ( compiler path and IntelliSense settings )  
-  - tasks.json ( build instructions )  
-  - launch.json ( debugger settings )
-- ...
-
-
   ```
   $ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
   ```
   ```
+  // 시스템 환경 변수 'PATH' 에 추가 등록  
   C:\msys64\ucrt64\bin
   ```
   ```
@@ -38,27 +33,65 @@ Computer-Graphics-Programing-in-OpenGL-With-CPP
   $ gdb --version
   ```
 
-## OpenGL 프로젝트 초기화
+- VS Code  
+
+- C/C++ Extension for VS Code
+  - c_cpp_properties.json ( compiler path and IntelliSense settings )  
+  - tasks.json ( build instructions )  
+  - launch.json ( debugger settings )  
+  - Chapter01 동작 테스트 후 CMake 도입함.  
+
+- Visual Studio 2022 Community 
+  - C++를 사용한 데스크톱 개발
+
+- CMake  
+  ```
+  $ cmake --version
+  ```
+
+- vcpkg  
+  ```
+  $ vcpkg --version
+  $ vcpkg new --application
+  ```
+- ...
+
+
+
+## 사용된 패키지 목록
 
 - GLAD
+  - [vcpkg](https://vcpkg.io/en/package/glad)
+    ```
+    $ vcpkg add port glad[gl-api-43]
+    ```
   - [GLAD](https://glad.dav1d.de/)  
-  - C/C++ OpenGL Core 4.3
+  - C/C++ OpenGL Core 4.3 API
 
 - GLFW
+  - [vcpkg](https://vcpkg.io/en/package/glfw3)
+    ```
+    $ vcpkg add port glfw3
+    ```
   - [GLFW](https://www.glfw.org/download.html)
   - [Windows Pre-Compiled Binaries](https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip)
   - glfw 3.4 win64
 
 - GLM
-  -  
+  - [vcpkg](https://vcpkg.io/en/package/glm)  
+    ```
+    $ vcpkg add port glm
+    ```
+  - [glm](https://github.com/g-truc/glm)
+  - OpenGL Mathematics  
 
-- 
+- ...  
   ```
   $ ...
   ```
-- 
+- ... 
   ```
-  $   
+  $ ...
   ```
 
 ## ...

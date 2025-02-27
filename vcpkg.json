@@ -5,6 +5,12 @@
     "fmt",
     "freeglut",
     "ftgl",
+    {
+      "name": "glad",
+      "features": [
+        "gl-api-43"
+      ]
+    },
     "glew",
     "glfw3",
     "glm",
@@ -19,9 +25,9 @@
     "nlohmann-json",
     "stb",
     {
-      "name": "glad",
+      "name": "freetype-gl",
       "features": [
-        "gl-api-43"
+        "glad"
       ]
     }
   ]
