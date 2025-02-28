@@ -11,16 +11,35 @@ GLuint vao[ numVAOs ];
 
 GLuint glCreateShaderProgram()
 {
-    const char* vshaderSource = 
-        "#version 430 \n"
-        "void main(void) \n"
-        "{ gl_Position = vec4(0.0, 0.0, 0.0, 1.0); }";
+    const char* vshaderSource = R"(
+        #version 430
 
-    const char* fshaderSource = 
-        "#version 430 \n"
-        "out vec4 color; \n"
-        "void main(void) \n"
-        "{ color = vec4(0.0, 0.0, 1.0, 1.0); }";
+        void main( void )
+        {
+            gl_Position = vec4( 0.0, 0.0, 0.0, 1.0 );
+        }
+    )";
+
+    // const char* vshaderSource = 
+    //     "#version 430 \n"
+    //     "void main(void) \n"
+    //     "{ gl_Position = vec4(0.0, 0.0, 0.0, 1.0); }";
+
+    const char* fshaderSource = R"(
+        #version 430
+        
+        out vec4 color;
+        void main( void )
+        {
+            color = vec4( 0.0, 0.0, 1.0, 1.0 );
+        }
+    )";
+
+    // const char* fshaderSource = 
+    //     "#version 430 \n"
+    //     "out vec4 color; \n"
+    //     "void main(void) \n"
+    //     "{ color = vec4(0.0, 0.0, 1.0, 1.0); }";
 
     // Create vertex and fragment shaders
     GLuint vShader = glCreateShader( GL_VERTEX_SHADER );

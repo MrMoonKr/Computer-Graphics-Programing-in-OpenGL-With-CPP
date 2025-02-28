@@ -12,9 +12,10 @@ project( Chapter02
 
 # 타겟 설정
 
-add_executable( program_2_1 program_2_1.cpp )
-target_link_libraries( program_2_1 PRIVATE glad::glad )
-target_link_libraries( program_2_1 PRIVATE glfw )
+add_executable( Program02_01 Program02_01.cpp )
+target_link_libraries( Program02_01 PRIVATE glad::glad glfw )
+
+
 
 add_executable( program_2_2 program_2_2.cpp )
 target_link_libraries( program_2_2 PRIVATE glad::glad )
@@ -39,7 +40,7 @@ target_link_libraries( program_2_6 PRIVATE glfw )
 
 # 출력 경로 설정
 
-set_target_properties( program_2_1 
+set_target_properties( Program02_01
     program_2_2
     program_2_3
     program_2_4

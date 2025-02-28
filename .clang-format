@@ -11,5 +11,8 @@ UseTab: Never
 InsertFinalNewline: true
 PointerAlignment: Right
 SortIncludes: 'false'
+KeepEmptyLinesAtTheStartOfBlocks: true
+
+
 
 ...
