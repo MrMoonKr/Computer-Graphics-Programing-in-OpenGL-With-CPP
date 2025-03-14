@@ -4,16 +4,134 @@
 #include <glad/glad.h>      // Library for handling the loading of OpenGL functions, must be included before GLFW
 #include <GLFW/glfw3.h>     // Library for handling window and user input
 
-std::string g_Title = "2-1. GLFW3 Application";
+std::string g_Title = "2-3. ErrorChecking : glError() 및 에러체크 함수들 사용 예제";
 std::string g_FPS   = "";
+
+GLuint g_RenderingProgram;
+GLuint g_VAO;
 
 float getRandomFloat( float min, float max )
 {
     return ( ( float )rand() / RAND_MAX ) * ( max - min ) + min;
 }
 
+void printShaderLog( GLuint shader )
+{
+    int logLength = 0;
+    int writtenLength = 0;
+    char* log;
+    glGetShaderiv( shader, GL_INFO_LOG_LENGTH, &logLength );
+    if ( logLength > 0 )
+    {
+        log = (char*)malloc( logLength );
+        glGetShaderInfoLog( shader, logLength, &writtenLength, log );
+        std::cout << "[에러] ShaderInfoLog : " << log << std::endl;
+        free( log );
+    }
+}
+
+void printProgramLog( GLuint program )
+{
+    int logLength = 0;
+    int writtenLength = 0;
+    char* log;
+    glGetProgramiv( program, GL_INFO_LOG_LENGTH, &logLength );
+    if ( logLength > 0 ) 
+    {
+        log = (char*)malloc( logLength );
+        glGetProgramInfoLog( program, logLength, &writtenLength, log );
+        std::cout << "[에러] ProgramInfoLog : " << log << std::endl;
+        free( log );
+    }
+}
+
+bool checkOpenGLError()
+{
+    bool foundError = false;
+    int glErr = glGetError();
+    while ( glErr != GL_NO_ERROR ) 
+    {
+        std::cout << "[에러] glError : " << glErr << std::endl;
+        foundError = true;
+        glErr = glGetError();
+    }
+    return foundError;
+}
+
+GLuint createShaderProgram()
+{
+    const char* vshaderSource = R"(
+        #version 430
+
+        void main( void )
+        {
+            gl_Position = vec4( 0.0, 0.0, 0.0, 1.0 );
+        }
+    )";
+
+    const char* fshaderSource = R"(
+        #version 430
+        
+        out vec4 color;
+        
+        void main( void )
+        {
+            color = vec4( 1.0, 1.0, 0.0, 1.0 );
+        }
+    )";
+
+    GLuint vShader = glCreateShader( GL_VERTEX_SHADER );
+    GLuint fShader = glCreateShader( GL_FRAGMENT_SHADER );
+
+    glShaderSource( vShader, 1, &vshaderSource, NULL );
+    glShaderSource( fShader, 1, &fshaderSource, NULL );
+
+    GLint vertCompiled;
+    GLint fragCompiled;
+    GLint linked;
+
+    glCompileShader( vShader );
+    checkOpenGLError();
+    glGetShaderiv( vShader, GL_COMPILE_STATUS, &vertCompiled );
+    if ( vertCompiled != 1 )
+    {
+        std::cout << "[에러] vertex compilation failed" << std::endl;
+        printShaderLog( vShader );
+    }
+
+    glCompileShader( fShader );
+    checkOpenGLError();
+    glGetShaderiv( fShader, GL_COMPILE_STATUS, &fragCompiled );
+    if ( fragCompiled != 1 )
+    {
+        std::cout << "[에러] fragment compilation failed" << std::endl;
+        printShaderLog( fShader );
+    }
+
+    GLint vfProgram = glCreateProgram();
+    glAttachShader( vfProgram, vShader );
+    glAttachShader( vfProgram, fShader );
+
+    glLinkProgram( vfProgram );
+    checkOpenGLError();
+    glGetProgramiv( vfProgram, GL_LINK_STATUS, &linked );
+    if ( linked != 1 )
+    {
+        std::cout << "[에러] linking failed" << std::endl;
+        printProgramLog( vfProgram );
+    }
+
+    return vfProgram;
+}
+
+
 void init( GLFWwindow* window )
 {
+    g_RenderingProgram = createShaderProgram();
+
+    glGenVertexArrays( 1, &g_VAO );
+    glBindVertexArray( g_VAO );
+
     glClearColor( 0.3f, 0.3f, 0.3f, 1.0f );
 }
 
@@ -53,6 +171,10 @@ void display()
 {
     glClear( GL_COLOR_BUFFER_BIT ); // 화면 지우기
 
+    glPointSize( 64.0f );
+
+    glUseProgram( g_RenderingProgram );
+    glDrawArrays( GL_POINTS, 0, 1 );
 }
 
 int main( int argc, char** argv )

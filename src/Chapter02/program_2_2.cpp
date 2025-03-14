@@ -9,7 +9,7 @@ GLuint renderingProgram;
 GLuint vao[ numVAOs ];
 
 
-GLuint glCreateShaderProgram()
+GLuint createShaderProgram()
 {
     const char* vshaderSource = R"(
         #version 430
@@ -67,7 +67,7 @@ GLuint glCreateShaderProgram()
 void init( GLFWwindow *window )
 {
     // Create the shader program
-    renderingProgram = glCreateShaderProgram();
+    renderingProgram = createShaderProgram();
     // Generate the VAOs
     glGenVertexArrays( numVAOs, vao );
     // Bind the first VAO

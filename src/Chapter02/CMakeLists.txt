@@ -15,7 +15,20 @@ project( Chapter02
 add_executable( Program02_01 Program02_01.cpp )
 target_link_libraries( Program02_01 PRIVATE glad::glad glfw )
 
+add_executable( Program02_02 Program02_02.cpp )
+target_link_libraries( Program02_02 PRIVATE glad::glad glfw )
 
+add_executable( Program02_03 Program02_03.cpp )
+target_link_libraries( Program02_03 PRIVATE glad::glad glfw )
+
+add_executable( Program02_04 Program02_04.cpp )
+target_link_libraries( Program02_04 PRIVATE glad::glad glfw )
+
+add_executable( Program02_05 Program02_05.cpp )
+target_link_libraries( Program02_05 PRIVATE glad::glad glfw )
+
+add_executable( Program02_06 Program02_06.cpp Utils.h Utils.cpp )
+target_link_libraries( Program02_06 PRIVATE glad::glad glfw soil2 )
 
 add_executable( program_2_2 program_2_2.cpp )
 target_link_libraries( program_2_2 PRIVATE glad::glad )
@@ -41,6 +54,11 @@ target_link_libraries( program_2_6 PRIVATE glfw )
 # 출력 경로 설정
 
 set_target_properties( Program02_01
+    Program02_02
+    Program02_03
+    Program02_04
+    Program02_05
+    Program02_06
     program_2_2
     program_2_3
     program_2_4

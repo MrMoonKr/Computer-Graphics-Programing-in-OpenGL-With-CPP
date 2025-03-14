@@ -44,6 +44,9 @@ find_package( glm CONFIG REQUIRED )
 find_package( glad CONFIG REQUIRED )
 # target_link_libraries( main PRIVATE glad::glad )
 
+find_package( soil2 CONFIG REQUIRED )
+# target_link_libraries( main PRIVATE soil2 )
+
 # add_subdirectory( "src" )
 add_subdirectory( "src/Chapter01" )
 add_subdirectory( "src/Chapter02" )

@@ -4,6 +4,12 @@
     "curl",
     "fmt",
     "freeglut",
+    {
+      "name": "freetype-gl",
+      "features": [
+        "glad"
+      ]
+    },
     "ftgl",
     {
       "name": "glad",
@@ -24,11 +30,6 @@
     },
     "nlohmann-json",
     "stb",
-    {
-      "name": "freetype-gl",
-      "features": [
-        "glad"
-      ]
-    }
+    "soil2"
   ]
 }
