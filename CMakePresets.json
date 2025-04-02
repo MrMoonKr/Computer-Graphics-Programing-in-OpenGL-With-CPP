@@ -1,5 +1,5 @@
 {
-    "version": 10,
+    "version": 9,
     "cmakeMinimumRequired": {
         "major": 3,
         "minor": 30,
@@ -7,38 +7,63 @@
     },
     "configurePresets": [
         {
-            "name": "Visual-Studio-2022-Debug-make",
+            "name": "msvc-x64-debug-make",
             "displayName": "Visual Studio 2022 64-bit Debug Make",
-            "description": "Configure for building with Visual Studio 64-bit using cl.exe",
+            "description": "Configuring for Visual Studio 17 2022",
             "generator": "Visual Studio 17 2022",
-            "binaryDir": "${sourceDir}/build",
+            "binaryDir": "build",
+            "architecture": "x64",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
-                "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/bin/msvc",
-                "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+                "CMAKE_C_COMPILER": {
+                    "type": "STRING",
+                    "value": "cl.exe"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "STRING",
+                    "value": "cl.exe"
+                },
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Debug"
+                }
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
             }
         },
         {
-            "name": "Visual-Studio-2022-release-make",
+            "name": "msvc-x64-release-make",
             "displayName": "Visual Studio 2022 64-bit Release Make",
-            "description": "Configure for building with Visual Studio 64-bit using cl.exe",
+            "description": "Configuring for Visual Studio 17 2022",
             "generator": "Visual Studio 17 2022",
-            "binaryDir": "${sourceDir}/build",
+            "binaryDir": "build",
+            "architecture": "x64",
             "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl.exe",
-                "CMAKE_CXX_COMPILER": "cl.exe",
-                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES",
-                "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/bin/msvc",
-                "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+                "CMAKE_C_COMPILER": {
+                    "type": "STRING",
+                    "value": "cl.exe"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "STRING",
+                    "value": "cl.exe"
+                },
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Release"
+                }
             },
-            "hidden": true
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
         },
         {
             "name": "msys2-mingw64-debug-make",
             "displayName": "MSYS2 MinGW 64-bit Debug Make",
-            "description": "Configure for building with MSYS2 MinGW 64-bit using Make in Debug mode",
+            "description": "Configure for MinGW Makefiles",
             "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/build",
             "cacheVariables": {
@@ -50,12 +75,12 @@
                 "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
                 "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
             },
-            "hidden": false
+            "hidden": true
         },
         {
             "name": "msys2-mingw64-release-make",
             "displayName": "MSYS2 MinGW 64-bit Release Make",
-            "description": "Configure for building with MSYS2 MinGW 64-bit using Make in Release mode",
+            "description": "Configure for MinGW Makefiles",
             "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/build",
             "cacheVariables": {
