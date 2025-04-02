@@ -65,7 +65,7 @@ find_package( FTGL CONFIG REQUIRED )
 
 add_subdirectory( "src/Chapter00" )
 add_subdirectory( "src/Chapter01" )
-#add_subdirectory( "src/Chapter02" )
+add_subdirectory( "src/Chapter02" )
 #add_subdirectory( "src/Chapter03" )
 
 
