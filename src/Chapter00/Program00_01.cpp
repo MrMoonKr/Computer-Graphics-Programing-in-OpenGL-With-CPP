@@ -5,11 +5,9 @@
 
 int main( int argc, char** argv )
 {
-    //std::cout << "Hello, GLFW!, 안녕, 지엘에프더블유" << std::endl;
-
     if ( GLFW_TRUE != glfwInit() )
     {
-        std::cout << "failed to initialize GLFW" << std::endl;
+        std::cout << "[에러] failed to initialize GLFW" << std::endl;
         return -1;
     }
 
@@ -28,10 +26,10 @@ int main( int argc, char** argv )
 
     glfwWindowHint( GLFW_SCALE_TO_MONITOR, GLFW_TRUE );
 
-    GLFWwindow* window = glfwCreateWindow( 800, 600, "1장. GLFW3 Application", nullptr, nullptr );
+    GLFWwindow* window = glfwCreateWindow( 800, 600, "0장. GLFW3 Application", nullptr, nullptr );
     if ( nullptr == window )
     {
-        std::cout << "failed to create window" << std::endl;
+        std::cout << "[에러] failed to create window" << std::endl;
         glfwTerminate();
         return -1;
     }
@@ -40,13 +38,13 @@ int main( int argc, char** argv )
 
     if ( 0 == gladLoadGLLoader( (GLADloadproc)glfwGetProcAddress ) )
     {
-        std::cout << "failed to initialize GLAD " << std::endl;
+        std::cout << "[에러] failed to initialize GLAD " << std::endl;
         return -1;
     }
 
     glClearColor( 0.3f, 0.3f, 0.3f, 1.0f );
     
-    while ( !glfwWindowShouldClose( window ) )
+    while ( !glfwWindowShouldClose( window ) ) // 메인 루프 ( 게임 루프, 시뮬레이션 루프 )
     {
         glfwPollEvents();
         if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_ESCAPE ) )
@@ -61,11 +59,14 @@ int main( int argc, char** argv )
         {
             glClearColor( 0.0f, 1.0f, 0.0f, 1.0f );
         }
+        else if ( GLFW_PRESS == glfwGetKey( window, GLFW_KEY_3 ) )
+        {
+            glClearColor( 0.0f, 0.0f, 1.0f, 1.0f );
+        }
         
-        // glClearColor( 0.3f, 0.3f, 0.3f, 1.0f );
-        glClear( GL_COLOR_BUFFER_BIT );
+        glClear( GL_COLOR_BUFFER_BIT ); // 화면 지우기
 
-        glfwSwapBuffers( window );
+        glfwSwapBuffers( window ); // 화면 출력
     }
 
     glfwDestroyWindow( window );

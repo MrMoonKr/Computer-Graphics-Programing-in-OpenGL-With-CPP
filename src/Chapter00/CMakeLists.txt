@@ -1,12 +1,12 @@
 cmake_minimum_required( VERSION 3.30 )
 
 
-# 프로젝트 설정
+# 프로젝트
 
-project( Chapter01 
+project( Chapter00 
     LANGUAGES CXX
     VERSION 1.0.0
-    DESCRIPTION "Chapter 01"
+    DESCRIPTION "Chapter 00"
 )
 
 
@@ -19,7 +19,7 @@ function( my_executable target_name )
 endfunction()
 
 
-# 타겟 설정
+# 타겟
 
-my_executable( Program01_01 )
+my_executable( Program00_01 )
 
