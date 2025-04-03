@@ -24,9 +24,12 @@ endfunction()
 my_executable( Program02_01 )
 my_executable( Program02_02 )
 my_executable( Program02_03 )
+my_executable( Program02_04 )
+my_executable( Program02_05 )
+my_executable( Program02_06 )
 
 
 # 에셋 복사
 
-# file( COPY ${CMAKE_SOURCE_DIR}/data DESTINATION "${CMAKE_SOURCE_DIR}/bin/msvc/Debug/Chapter02" )
+file( COPY ${CMAKE_SOURCE_DIR}/data DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Debug" )
 

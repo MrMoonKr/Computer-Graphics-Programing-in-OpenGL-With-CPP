@@ -1,6 +1,8 @@
-#version 410
+#version 430
+
 out vec4 color;
-void main(void)
+
+void main( void )
 {
-    color = vec4(1.0, 0.6, 1.0, 1.0);
+    color = vec4( 1.0, 0.6, 1.0, 1.0 );
 }
