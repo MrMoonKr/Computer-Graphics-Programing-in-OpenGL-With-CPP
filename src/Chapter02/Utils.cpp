@@ -20,6 +20,11 @@ Utils::Utils()
 {
 }
 
+float Utils::getRandomFloat( float min, float max )
+{
+    return ( ( float )rand() / RAND_MAX ) * ( max - min ) + min;
+}
+
 void Utils::displayComputeShaderLimits()
 {
     int work_grp_cnt[ 3 ];
@@ -37,7 +42,7 @@ void Utils::displayComputeShaderLimits()
     printf( "max local work group invocations %i\n", work_grp_inv );
 }
 
-string Utils::readShaderFile( const char *filePath )
+string Utils::readShaderFile( const char* filePath )
 {
     string content;
 
@@ -73,22 +78,22 @@ void Utils::printShaderLog( GLuint shader )
 {
     int len = 0;
     int chWrittn = 0;
-    char *log;
+    char* log;
     glGetShaderiv( shader, GL_INFO_LOG_LENGTH, &len );
     if ( len > 0 )
     {
-        log = ( char * )malloc( len );
+        log = ( char* )malloc( len );
         glGetShaderInfoLog( shader, len, &chWrittn, log );
         cout << "Shader Info Log: " << log << endl;
         free( log );
     }
 }
 
-GLuint Utils::prepareShader( int shaderTYPE, const char *shaderPath )
+GLuint Utils::prepareShader( int shaderTYPE, const char* shaderPath )
 {
     GLint shaderCompiled;
     string shaderStr = readShaderFile( shaderPath );
-    const char *shaderSrc = shaderStr.c_str();
+    const char* shaderSrc = shaderStr.c_str();
     GLuint shaderRef = glCreateShader( shaderTYPE );
 
     if ( shaderRef == 0 || shaderRef == GL_INVALID_ENUM )
@@ -152,11 +157,11 @@ void Utils::printProgramLog( int prog )
 {
     int len = 0;
     int chWrittn = 0;
-    char *log;
+    char* log;
     glGetProgramiv( prog, GL_INFO_LOG_LENGTH, &len );
     if ( len > 0 )
     {
-        log = ( char * )malloc( len );
+        log = ( char* )malloc( len );
         glGetProgramInfoLog( prog, len, &chWrittn, log );
         cout << "Program Info Log: " << log << endl;
         free( log );
@@ -177,7 +182,7 @@ int Utils::finalizeShaderProgram( GLuint sprogram )
     return sprogram;
 }
 
-GLuint Utils::createShaderProgram( const char *cp )
+GLuint Utils::createShaderProgram( const char* cp )
 {
     GLuint cShader = prepareShader( GL_COMPUTE_SHADER, cp );
     GLuint cprogram = glCreateProgram();
@@ -186,7 +191,7 @@ GLuint Utils::createShaderProgram( const char *cp )
     return cprogram;
 }
 
-GLuint Utils::createShaderProgram( const char *vp, const char *fp )
+GLuint Utils::createShaderProgram( const char* vp, const char* fp )
 {
     GLuint vShader = prepareShader( GL_VERTEX_SHADER, vp );
     GLuint fShader = prepareShader( GL_FRAGMENT_SHADER, fp );
@@ -197,7 +202,7 @@ GLuint Utils::createShaderProgram( const char *vp, const char *fp )
     return vfprogram;
 }
 
-GLuint Utils::createShaderProgram( const char *vp, const char *gp, const char *fp )
+GLuint Utils::createShaderProgram( const char* vp, const char* gp, const char* fp )
 {
     GLuint vShader = prepareShader( GL_VERTEX_SHADER, vp );
     GLuint gShader = prepareShader( GL_GEOMETRY_SHADER, gp );
@@ -210,7 +215,7 @@ GLuint Utils::createShaderProgram( const char *vp, const char *gp, const char *f
     return vgfprogram;
 }
 
-GLuint Utils::createShaderProgram( const char *vp, const char *tCS, const char *tES, const char *fp )
+GLuint Utils::createShaderProgram( const char* vp, const char* tCS, const char* tES, const char* fp )
 {
     GLuint vShader = prepareShader( GL_VERTEX_SHADER, vp );
     GLuint tcShader = prepareShader( GL_TESS_CONTROL_SHADER, tCS );
@@ -225,7 +230,7 @@ GLuint Utils::createShaderProgram( const char *vp, const char *tCS, const char *
     return vtfprogram;
 }
 
-GLuint Utils::createShaderProgram( const char *vp, const char *tCS, const char *tES, char *gp, const char *fp )
+GLuint Utils::createShaderProgram( const char* vp, const char* tCS, const char* tES, char* gp, const char* fp )
 {
     GLuint vShader = prepareShader( GL_VERTEX_SHADER, vp );
     GLuint tcShader = prepareShader( GL_TESS_CONTROL_SHADER, tCS );
@@ -242,7 +247,7 @@ GLuint Utils::createShaderProgram( const char *vp, const char *tCS, const char *
     return vtgfprogram;
 }
 
-GLuint Utils::loadCubeMap( const char *mapDir )
+GLuint Utils::loadCubeMap( const char* mapDir )
 {
     GLuint textureRef;
     string xp = mapDir;
@@ -269,7 +274,7 @@ GLuint Utils::loadCubeMap( const char *mapDir )
     return textureRef;
 }
 
-GLuint Utils::loadTexture( const char *texImagePath )
+GLuint Utils::loadTexture( const char* texImagePath )
 {
     GLuint textureRef;
     textureRef = SOIL_load_OGL_texture( texImagePath, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y );
@@ -297,20 +302,20 @@ GLuint Utils::loadTexture( const char *texImagePath )
 }
 
 // GOLD material - ambient, diffuse, specular, and shininess
-float *Utils::goldAmbient()
+float* Utils::goldAmbient()
 {
     static float a[ 4 ] = { 0.2473f, 0.1995f, 0.0745f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
-float *Utils::goldDiffuse()
+float* Utils::goldDiffuse()
 {
     static float a[ 4 ] = { 0.7516f, 0.6065f, 0.2265f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
-float *Utils::goldSpecular()
+float* Utils::goldSpecular()
 {
     static float a[ 4 ] = { 0.6283f, 0.5559f, 0.3661f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
 float Utils::goldShininess()
 {
@@ -318,20 +323,20 @@ float Utils::goldShininess()
 }
 
 // SILVER material - ambient, diffuse, specular, and shininess
-float *Utils::silverAmbient()
+float* Utils::silverAmbient()
 {
     static float a[ 4 ] = { 0.1923f, 0.1923f, 0.1923f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
-float *Utils::silverDiffuse()
+float* Utils::silverDiffuse()
 {
     static float a[ 4 ] = { 0.5075f, 0.5075f, 0.5075f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
-float *Utils::silverSpecular()
+float* Utils::silverSpecular()
 {
     static float a[ 4 ] = { 0.5083f, 0.5083f, 0.5083f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
 float Utils::silverShininess()
 {
@@ -339,20 +344,20 @@ float Utils::silverShininess()
 }
 
 // BRONZE material - ambient, diffuse, specular, and shininess
-float *Utils::bronzeAmbient()
+float* Utils::bronzeAmbient()
 {
     static float a[ 4 ] = { 0.2125f, 0.1275f, 0.0540f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
-float *Utils::bronzeDiffuse()
+float* Utils::bronzeDiffuse()
 {
     static float a[ 4 ] = { 0.7140f, 0.4284f, 0.1814f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
-float *Utils::bronzeSpecular()
+float* Utils::bronzeSpecular()
 {
     static float a[ 4 ] = { 0.3936f, 0.2719f, 0.1667f, 1 };
-    return ( float * )a;
+    return ( float* )a;
 }
 float Utils::bronzeShininess()
 {

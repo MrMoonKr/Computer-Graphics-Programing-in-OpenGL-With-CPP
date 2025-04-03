@@ -67,5 +67,6 @@ add_subdirectory( "src/Chapter00" )
 add_subdirectory( "src/Chapter01" )
 add_subdirectory( "src/Chapter02" )
 #add_subdirectory( "src/Chapter03" )
+add_subdirectory( "src/Chapter04" )
 
 
