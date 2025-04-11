@@ -1,12 +1,23 @@
 #version 410
-layout (location=0) in vec3 position;
 
-uniform mat4 mv_matrix;
-uniform mat4 proj_matrix;
+// 정점 속성 
+layout ( location=0 ) in vec3  aPosition ;
 
-out vec4 varyingColor;
+// 유니폼 속성
+uniform mat4 uModelViewMatrix ;
+uniform mat4 uProjectionMatrix ;
 
-void main(void) {
-    gl_Position =  proj_matrix * mv_matrix * vec4(position, 1.0);
-    varyingColor = vec4(position, 1.0) * 0.5+ vec4(0.5,0.5,0.5,0.5);
-} 
+// 출력 속성
+out vec4 vertexColor ;
+
+/**
+ * @brief Vertex Shader
+ * @details
+ *  - gl_Position   : 정점의 위치를 설정한다.
+ *  - vertexColor   : 정점의 색상을 설정한다.
+ */
+void main( void ) 
+{
+    gl_Position =  uProjectionMatrix * uModelViewMatrix * vec4( aPosition, 1.0 ) ;
+    vertexColor = vec4( aPosition, 1.0 ) * 0.5 + vec4( 0.5, 0.5, 0.5, 0.5 ) ;
+}

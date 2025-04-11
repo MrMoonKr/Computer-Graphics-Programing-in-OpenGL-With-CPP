@@ -24,6 +24,9 @@ endfunction()
 # 타겟 설정
 
 my_executable( Program04_01 )
+my_executable( Program04_02 )
+my_executable( Program04_03 )
+my_executable( Program04_04 )
 
 
 # 에셋 복사

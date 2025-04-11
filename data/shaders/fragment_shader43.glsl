@@ -1,12 +1,18 @@
 #version 410
 
-in vec4 varyingColor;  // the same name
+// 입력 속성
+in vec4 vertexColor ;
 
-out vec4 color;
+// 출력 속성
+out vec4 finalColor ;
 
-uniform mat4 mv_matrix;
-uniform mat4 proj_matrix;
-
-void main(void) {
-    color = varyingColor;
+/**
+ * @brief Fragment Shader
+ * @details
+ *  - vertexColor : 정점의 색상이 전달된다.
+ *  - finalColor  : 최종 색상을 설정한다.
+ */
+void main( void ) 
+{
+    finalColor = vertexColor;
 }
