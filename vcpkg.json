@@ -1,35 +1,22 @@
 {
   "dependencies": [
-    "cpp-httplib",
-    "curl",
-    "fmt",
-    "freeglut",
-    {
-      "name": "freetype-gl",
-      "features": [
-        "glad"
-      ]
-    },
-    "ftgl",
     {
       "name": "glad",
       "features": [
         "gl-api-43"
       ]
     },
-    "glew",
     "glfw3",
     "glm",
+    "stb",
+    "soil2",
     {
       "name": "imgui",
       "features": [
-        "freetype",
         "glfw-binding",
-        "opengl3-binding"
+        "opengl3-binding",
+        "freetype"
       ]
-    },
-    "nlohmann-json",
-    "stb",
-    "soil2"
+    }
   ]
 }

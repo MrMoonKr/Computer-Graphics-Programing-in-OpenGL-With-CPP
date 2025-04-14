@@ -3,7 +3,6 @@
 WIP ( Work in Progrss )  
 
 학생들을 위한 OpenGL 직무 교육( OJT, On the job Training )을 위해서 생성 하였습니다.  
-최신 버전 네이티브 개발 환경으로 프로젝트를 구성 하였습니다.  
 
 
 ## 책 관련 링크  
@@ -13,56 +12,66 @@ WIP ( Work in Progrss )
 - [저자 홈페이지](https://athena.ecs.csus.edu/~gordonvs/)  
 
 
-## 개발 및 테스트 환경  
+## 개발 및 테스트 환경
 
-MinGW 환경에서 Visual Studio C++ 2022 환경으로 변경함.  
-추후 MinGW 거쳐서 WSL 우분투 환경까지 테스트 필요함.  
+- 시스템 ( Computer System )  
 
-- [개발 환경 구축](https://code.visualstudio.com/docs/cpp/config-mingw)  
+  - AMD Ryzen 9 5900X 12-Core Processor
+  - NVIDIA Geforce RTX 3080 10GB
+  - Windows 11 64bit Korean
 
-- Windows 11 64bit  
+- 컴파일러 및 링커 ( Compiler , Linker )  
 
-- ~~MinGW-w64 via MSYS2~~
-  ```
-  $ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
-  ```
-  ```
-  // 시스템 환경 변수 'PATH' 에 추가 등록  
-  C:\msys64\ucrt64\bin
-  ```
-  ```
-  $ gcc --version
-  $ g++ --version
-  $ gdb --version
-  ```
+  - [Visual Studio Community 2022](https://visualstudio.microsoft.com/ko/free-developer-offers/)  
+    - C++를 사용한 데스크톱 개발  
+    - C++를 사용한 게임 개발  
 
-- Visual Studio Community 2022  
-  - C++를 사용한 데스크톱 개발  
-  - C++를 사용한 게임 개발  
+  - [~~MingGW-w64 via MSYS2~~](https://code.visualstudio.com/docs/cpp/config-mingw)
+    - 당분간 테스트 없음  
+    - [설치파일](https://github.com/msys2/msys2-installer/releases/download/2024-12-08/msys2-x86_64-20241208.exe)
+      ```
+      $ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
+      ```
+      ```
+      // 시스템 환경 변수 'PATH' 에 추가 등록  
+      C:\msys64\ucrt64\bin
+      ```
+      ```
+      $ gcc --version
+      $ g++ --version
+      $ gdb --version
+      ```
 
-- VS Code  
-  - C/C++ Extension for VS Code
-    - c_cpp_properties.json ( compiler path and IntelliSense settings )  
-    - tasks.json ( build instructions )  
-    - launch.json ( debugger settings )  
-    - Chapter01 동작 테스트 후 CMake 도입함.  
+- 에디터 ( Editor, Intergrated Development Environment )  
 
-- CMake  
-  - 설치  
-  - ...
-  ```
-  $ cmake --version
-  ```
+  - [VS Code](https://visualstudio.microsoft.com/ko/free-developer-offers/)  
+    - C/C++ Extension for VS Code
+      - c_cpp_properties.json ( compiler path and IntelliSense settings )  
+      - tasks.json ( build instructions )  
+      - launch.json ( debugger settings )  
+      - Chapter01 동작 테스트 후 CMake 도입함.  
 
-- vcpkg  
-  - 설치  
-  - ...
-  ```
-  $ vcpkg --version
-  $ vcpkg new --application
-  ```
+- 빌드 매니저 ( Build Manager )
+  - [CMake](https://cmake.org/)  
+    - [설치](https://cmake.org/download/)  
+    - ...
+    ```
+    $ cmake --version
+    ```
+  - CMakeLists.txt
+  - CMakePresets.json
+  - CMakeUserPresets.json
 
-- ...
+- 패키지 매니저 ( Package Manager )
+  - [vcpkg](https://vcpkg.io/en/)  
+    - [설치](https://github.com/microsoft/vcpkg)  
+    - ...
+    ```
+    $ vcpkg --version
+    $ vcpkg new --application
+    ```
+  - vcpkg.json
+  - vcpkg-configuration.json
 
 
 ## 사용된 패키지 목록
@@ -92,17 +101,41 @@ MinGW 환경에서 Visual Studio C++ 2022 환경으로 변경함.
   - [glm](https://github.com/g-truc/glm)
   - OpenGL Mathematics  
 
-- ...  
+- STB
+  - [vcpkg](https://vcpkg.io/en/package/stb)  
   ```
-  $ ...
+  $ vcpkg add port stb
   ```
-- ... 
+  - [stb](https://github.com/nothings/stb)
+  - Image Loader
+
+- IMGUI
+  - [vcpkg](https://vcpkg.io/en/package/imgui)  
   ```
-  $ ...
+  $ vcpkg add port imgui[glfw-binding,opengl3-binding,freetype]
   ```
+  - [imgui](https://github.com/ocornut/imgui)
+  - Immediate Mode Graphical User Interface
+
+- SOIL2
+  - [vcpkg](https://vcpkg.io/en/package/soil2)  
+  ```
+  $ vcpkg add port soil2
+  ```
+  - [SOIL2](https://github.com/SpartanJ/SOIL2)
+  - Simple OpenGL Image Library 2
+
+- ...
+  - [vcpkg]()  
+  ```
+  $ vcpkg add port ...
+  ```
+  - [...]()
+  - ...
 
 ## ...
 
 ---
 ---
 ---
+
