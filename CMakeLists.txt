@@ -45,10 +45,15 @@ find_package( soil2 CONFIG REQUIRED )
 
 # 하위 프로젝트
 
+include_directories( src/Utils )
+
+add_subdirectory( "src/Utils" )
+
 add_subdirectory( "src/Chapter00" )
 add_subdirectory( "src/Chapter01" )
 add_subdirectory( "src/Chapter02" )
 #add_subdirectory( "src/Chapter03" )
 add_subdirectory( "src/Chapter04" )
+add_subdirectory( "src/Chapter05" )
 
 

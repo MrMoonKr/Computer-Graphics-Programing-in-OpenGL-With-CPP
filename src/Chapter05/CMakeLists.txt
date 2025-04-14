@@ -3,9 +3,9 @@ cmake_minimum_required( VERSION 3.30 )
 
 # 프로젝트 설정
 
-project( Chapter04
+project( Chapter05
     VERSION 1.0
-    DESCRIPTION "Chapter 04"
+    DESCRIPTION "Chapter 05"
     LANGUAGES CXX
 )
 
@@ -24,10 +24,8 @@ endfunction()
 
 # 타겟 설정
 
-my_executable( Program04_01 )
-my_executable( Program04_02 )
-my_executable( Program04_03 )
-my_executable( Program04_04 )
+my_executable( Program05_00 )
+
 
 
 # 에셋 복사
